@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const Todo = require("./models/todoModel");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -11,6 +12,11 @@ app.listen(5000, () => {
 });
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: ["http://127.0.0.1:5500", "http://localhost:1234"],
+  })
+);
 
 mongoose.connect(
   process.env.MDB_CONNECTION_STRING,
